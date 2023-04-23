@@ -6,7 +6,7 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/robo
  systemctl enable mysqld
  systemctl start mysqld
 
- grep temp /var/log/mysqld.log
+ DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk  '{print $NF}')
 
  mysql_secure_installation
 
