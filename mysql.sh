@@ -19,3 +19,4 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/robo
  unzip -o mysql.zip
  cd mysql-main
  mysql -u root -pRoboShop@1 <shipping.sql
+
