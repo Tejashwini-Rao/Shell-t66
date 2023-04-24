@@ -8,7 +8,7 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/robo
 
  DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk  '{print $NF}')
 
- mysql_secure_installation
+ echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'roboshop@1';" |  mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD}
 
  mysql -uroot -pRoboShop@1
  #>uninstall plugin validate_password;
