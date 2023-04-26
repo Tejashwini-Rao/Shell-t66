@@ -39,6 +39,7 @@ Unzip(){
      statuscheck
 
      unzip -o /tmp/${COMPONENT}.zip&>>/tmp/${COMPONENT}.log
+     statuscheck
      mv -main ${COMPONENT}&>>/tmp/${COMPONENT}.log
      cd ${COMPONENT}&>>/tmp/${COMPONENT}.log
      npm install&>>/tmp/${COMPONENT}.log
