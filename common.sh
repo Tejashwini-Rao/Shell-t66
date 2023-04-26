@@ -7,7 +7,8 @@ statuscheck() {
   fi
 }
 
-NodeJS() {
+NodeJS()
+{
 
 echo Downloading nodejs dependencies
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash &>>/tmp/${COMPONENT}.log
