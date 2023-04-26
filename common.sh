@@ -36,11 +36,12 @@ echo Downloading ${COMPONENT} content
    npm install&>>/tmp/${COMPONENT}.log
    statuscheck
 
-   echo moving  ${COMPONENT} content
+  echo moving  ${COMPONENT} content
    mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service&>>/tmp/${COMPONENT}.log
     systemctl daemon-reload&>>/tmp/${COMPONENT}.log
     systemctl start ${COMPONENT}&>>/tmp/${COMPONENT}.log
     systemctl enable ${COMPONENT}&>>/tmp/${COMPONENT}.log
     statuscheck
-}
+
+  }
 
