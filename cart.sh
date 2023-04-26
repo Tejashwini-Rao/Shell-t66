@@ -1,6 +1,6 @@
  set -e
 
-COMPONENT= cart
+COMPONENT=cart
  source common.sh
 
 
