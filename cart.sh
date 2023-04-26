@@ -1,4 +1,5 @@
  set -e
+
  source common
  COMPONENT= cart
 

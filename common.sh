@@ -9,12 +9,12 @@ statuscheck() {
 }
 
 NodeJS() {
-echo Downloading nodejs dependencies >>&/tmp/${COMPONENT}.log
+echo Downloading nodejs dependencies
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash - >>&/tmp/${COMPONENT}.log
- yum install nodejs -y>>&/tmp/${COMPONENT}.log
+ yum install nodejs -y >>&/tmp/${COMPONENT}.log
  statuscheck
 
-id roboshop >>&/tmp/${COMPONENT}.log
+id roboshop >> &/tmp/${COMPONENT}.log
 if [$? -ne 0];
 then
  echo adding roboshop user
