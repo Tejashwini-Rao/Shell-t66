@@ -1,16 +1,8 @@
  set -e
- curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
- yum install nodejs -y
+ source common
+ COMPONENT= cart
 
- useradd roboshop
-
- curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip"
- cd /home/roboshop
-rm -rf cart
- unzip -o /tmp/cart.zip
- mv cart-main cart
- cd cart
- npm install
+NodeJS
 
  mv /home/roboshop/cart/systemd.service /etc/systemd/system/cart.service
  systemctl daemon-reload
