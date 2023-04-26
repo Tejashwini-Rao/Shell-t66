@@ -1,7 +1,7 @@
  set -e
+COMPONENT=user
 
- source common
- COMPONENT= user
+ source common.sh
 
 
 NodeJS
