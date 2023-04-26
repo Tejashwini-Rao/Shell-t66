@@ -20,6 +20,7 @@ then
  echo adding roboshop user
  useradd roboshop
  statuscheck
+ fi
 }
 
 
