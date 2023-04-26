@@ -1,9 +1,9 @@
 
 statuscheck() {
   if [$? -eq 0];then
-    echo -e "\e32msuccess\e[0m"
+    echo -e "\e32msuccess\e[om"
   else
-      echo -e "\e31mfailure\e[0m"
+      echo -e "\e31mfailure\e[om"
   fi
 }
 
