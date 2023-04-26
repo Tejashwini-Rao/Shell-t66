@@ -1,6 +1,6 @@
  set -e
 
- source common
+ source common.sh
  COMPONENT= cart
 
 NodeJS
