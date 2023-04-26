@@ -41,7 +41,4 @@ echo Downloading ${COMPONENT} content
     systemctl start ${COMPONENT}&>>/tmp/${COMPONENT}.log
     systemctl enable ${COMPONENT}&>>/tmp/${COMPONENT}.log
     statuscheck
-
- }
-
-
+}
