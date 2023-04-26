@@ -36,6 +36,8 @@ Unzip(){
   echo Unziping ${COMPONENT} content
      cd /home/roboshop&>>/tmp/${COMPONENT}.log
      rm -rf ${COMPONENT}&>>/tmp/${COMPONENT}.log
+     statuscheck
+
      unzip -o /tmp/${COMPONENT}.zip&>>/tmp/${COMPONENT}.log
      mv -main ${COMPONENT}&>>/tmp/${COMPONENT}.log
      cd ${COMPONENT}&>>/tmp/${COMPONENT}.log
