@@ -3,13 +3,13 @@
  source common
  COMPONENT= user
 
- NodeJS
 
+NodeJS
 
+Roboshop
 
+Download
+Unzip
 
+Move
 
- mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
- systemctl daemon-reload
- systemctl start user
- systemctl enable user
