@@ -1,7 +1,8 @@
  set -e
 
+COMPONENT= cart
  source common.sh
- COMPONENT= cart
+
 
 NodeJS
 
