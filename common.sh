@@ -20,9 +20,10 @@ then
  echo adding roboshop user
  useradd roboshop
  statuscheck
+ }
 
 
-
+DOWNLOAD{
 echo Downloading ${COMPONENT} content
  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip"&>>/tmp/${COMPONENT}.log
  statuscheck
