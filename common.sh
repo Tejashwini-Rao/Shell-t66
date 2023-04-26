@@ -7,8 +7,7 @@ statuscheck() {
   fi
 }
 
-NodeJS()
-{
+NodeJS() {
 
 echo Downloading nodejs dependencies
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash &>>/tmp/${COMPONENT}.log
@@ -43,6 +42,5 @@ echo Downloading ${COMPONENT} content
     systemctl start ${COMPONENT}&>>/tmp/${COMPONENT}.log
     systemctl enable ${COMPONENT}&>>/tmp/${COMPONENT}.log
     statuscheck
-
-  }
+}
 
