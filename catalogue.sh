@@ -1,5 +1,5 @@
 set -e
-COMPONENT= catalogue
+COMPONENT=catalogue
 source common
 
 
