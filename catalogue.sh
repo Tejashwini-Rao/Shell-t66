@@ -1,6 +1,6 @@
 set -e
 COMPONENT=catalogue
-source common
+source common.sh
 
 
 
