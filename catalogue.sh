@@ -1,7 +1,7 @@
 set -e
-
-source common
 COMPONENT= catalogue
+source common
+
 
 
 NodeJS
