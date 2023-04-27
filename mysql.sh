@@ -22,23 +22,23 @@ echo "show databases;" | mysql -uroot -p$MYSQL_PASSWORD &>>/tmp/${COMPONENT}.log
 if [ $? -ne 0 ]; then
   echo Changing Default Password
   DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
-  echo "alter user 'root'@'localhost' identified with mysql_native_password by '$MYSQL_PASSWORD';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} &>>/tmp/${COMPONENT}.log}
-  StatusCheck
+  echo "alter user 'root'@'localhost' identified with mysql_native_password by '$MYSQL_PASSWORD';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} &>>/tmp/${COMPONENT}.log
+  statuscheck
 fi
 
 
-echo "show plugins;" | mysql -uroot -p$MYSQL_PASSWORD 2>&1 | grep validate_password &>>/tmp/${COMPONENT}.log}
+echo "show plugins;" | mysql -uroot -p$MYSQL_PASSWORD 2>&1 | grep validate_password &>>/tmp/${COMPONENT}.log
 if [ $? -eq 0 ]; then
   echo Remove Password Validate Plugin
-  echo "uninstall plugin validate_password;" | mysql -uroot -p$MYSQL_PASSWORD &>>/tmp/${COMPONENT}.log}
-  StatusCheck
+  echo "uninstall plugin validate_password;" | mysql -uroot -p$MYSQL_PASSWORD &>>/tmp/${COMPONENT}.log
+  statuscheck
 fi
 
 Download
 
 echo "Extract & Load Schema"
-cd /tmp &>>/tmp/${COMPONENT}.log} && unzip -o mysql.zip &>>/tmp/${COMPONENT}.log} &&  cd mysql-main &>>/tmp/${COMPONENT}.log} && mysql -u root -p$MYSQL_PASSWORD <shipping.sql &>>/tmp/${COMPONENT}.log}
-StatusCheck
+ cd /tmp &>>/tmp/${COMPONENT}.log && unzip -o mysql.zip &>>/tmp/${COMPONENT}.log &&  cd mysql-main &>>/tmp/${COMPONENT}.log && mysql -u root -p$MYSQL_PASSWORD <shipping.sql &>>/tmp/${COMPONENT}.log
+ statuscheck
 
 
 
