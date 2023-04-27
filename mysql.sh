@@ -2,7 +2,7 @@ COMPONENT=mysql
 source common.sh
  set -e
 
- if [ -z "$MYSQL_PASSWORD"]
+ if [ -z '$MYSQL_PASSWORD']
  then
    exit 1
 fi
