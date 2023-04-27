@@ -16,26 +16,26 @@ echo install mysql
 echo start services
  systemctl enable mysqld &>>/tmp/${COMPONENT}.log && systemctl start mysqld &>>/tmp/${COMPONENT}.log
 
-echo "show databases;" | mysql -uroot -p$MYSQL_PASSWORD &>>${LOG}
+echo "show databases;" | mysql -uroot -p$MYSQL_PASSWORD &>>/tmp/${COMPONENT}.log
 if [ $? -ne 0 ]; then
   echo Changing Default Password
   DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
-  echo "alter user 'root'@'localhost' identified with mysql_native_password by '$MYSQL_PASSWORD';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} &>>${LOG}
+  echo "alter user 'root'@'localhost' identified with mysql_native_password by '$MYSQL_PASSWORD';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} &>>/tmp/${COMPONENT}.log}
   StatusCheck
 fi
 
 
-echo "show plugins;" | mysql -uroot -p$MYSQL_PASSWORD 2>&1 | grep validate_password &>>${LOG}
+echo "show plugins;" | mysql -uroot -p$MYSQL_PASSWORD 2>&1 | grep validate_password &>>/tmp/${COMPONENT}.log}
 if [ $? -eq 0 ]; then
   echo Remove Password Validate Plugin
-  echo "uninstall plugin validate_password;" | mysql -uroot -p$MYSQL_PASSWORD &>>${LOG}
+  echo "uninstall plugin validate_password;" | mysql -uroot -p$MYSQL_PASSWORD &>>/tmp/${COMPONENT}.log}
   StatusCheck
 fi
 
 DOWNLOAD
 
 echo "Extract & Load Schema"
-cd /tmp &>>${LOG} && unzip -o mysql.zip &>>${LOG} &&  cd mysql-main &>>${LOG} && mysql -u root -p$MYSQL_PASSWORD <shipping.sql &>>${LOG}
+cd /tmp &>>/tmp/${COMPONENT}.log} && unzip -o mysql.zip &>>/tmp/${COMPONENT}.log} &&  cd mysql-main &>>/tmp/${COMPONENT}.log} && mysql -u root -p$MYSQL_PASSWORD <shipping.sql &>>/tmp/${COMPONENT}.log}
 StatusCheck
 
 
