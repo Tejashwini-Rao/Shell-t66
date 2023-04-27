@@ -12,9 +12,11 @@ fi
 
 echo install mysql
  yum install mysql-community-server -y &>>/tmp/${COMPONENT}.log
+ statuscheck
 
 echo start services
  systemctl enable mysqld &>>/tmp/${COMPONENT}.log && systemctl restart mysqld &>>/tmp/${COMPONENT}.log
+ statuscheck
 
 echo "show databases;" | mysql -uroot -p$MYSQL_PASSWORD &>>/tmp/${COMPONENT}.log
 if [ $? -ne 0 ]; then
