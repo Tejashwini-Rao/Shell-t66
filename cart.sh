@@ -6,10 +6,15 @@ COMPONENT=cart
 
 NodeJS
 
-Roboshop
+Appuser
 
 Download
-Unzip
+
+Appclean
+
+Npm
 
 Move
+
+Service
 

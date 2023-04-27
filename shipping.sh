@@ -12,7 +12,4 @@ rm -rf shipping
  mvn clean package
  mv target/shipping-1.0.jar shipping.jar
 
- mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
- systemctl daemon-reload
- systemctl start shipping
- systemctl enable shipping
+Service()

@@ -6,10 +6,15 @@ COMPONENT=user
 
 NodeJS
 
-Roboshop
+Appuser
 
 Download
-Unzip
+
+Appclean
+
+Npm
 
 Move
+
+Service
 

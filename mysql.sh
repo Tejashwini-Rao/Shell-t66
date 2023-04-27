@@ -1,26 +1,43 @@
+COMPONENT=mysql
+source common.sh
  set -e
- curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo
 
- yum install mysql-community-server -y
+ if[-z "$MYSQL_PASSWORD"]
+ then
+   exit 1
 
- systemctl enable mysqld
- systemctl start mysqld
+ echo downloading repo
+ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>>/tmp/${COMPONENT}.log
+ statuscheck
 
- DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk  '{print $NF}')
+echo install mysql
+ yum install mysql-community-server -y &>>/tmp/${COMPONENT}.log
 
- echo MYSQL PASSWORD="$MYSQL_PASSWORD"
+echo start services
+ systemctl enable mysqld &>>/tmp/${COMPONENT}.log && systemctl start mysqld &>>/tmp/${COMPONENT}.log
 
- echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD';" |  mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD}
+echo "show databases;" | mysql -uroot -p$MYSQL_PASSWORD &>>${LOG}
+if [ $? -ne 0 ]; then
+  echo Changing Default Password
+  DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
+  echo "alter user 'root'@'localhost' identified with mysql_native_password by '$MYSQL_PASSWORD';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} &>>${LOG}
+  StatusCheck
+fi
 
- echo "uninstall plugin validate_password;" | mysql -uroot -p${MYSQL_PASSWORD}
 
+echo "show plugins;" | mysql -uroot -p$MYSQL_PASSWORD 2>&1 | grep validate_password &>>${LOG}
+if [ $? -eq 0 ]; then
+  echo Remove Password Validate Plugin
+  echo "uninstall plugin validate_password;" | mysql -uroot -p$MYSQL_PASSWORD &>>${LOG}
+  StatusCheck
+fi
 
- curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
+DOWNLOAD
 
- cd /tmp
- unzip -o mysql.zip
- cd mysql-main
- mysql -u root -pRoboShop@1 <shipping.sql
+echo "Extract & Load Schema"
+cd /tmp &>>${LOG} && unzip -o mysql.zip &>>${LOG} &&  cd mysql-main &>>${LOG} && mysql -u root -p$MYSQL_PASSWORD <shipping.sql &>>${LOG}
+StatusCheck
+
 
 
 
