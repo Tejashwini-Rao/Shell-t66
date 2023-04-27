@@ -35,7 +35,7 @@ if [ $? -eq 0 ]; then
 fi
 
 
-echo "Extract & Load Schema"
+echo Extract & Load Schema
  cd /tmp &>>/tmp/${COMPONENT}.log && unzip -o mysql.zip &>>/tmp/${COMPONENT}.log &&  cd mysql-main &>>/tmp/${COMPONENT}.log && mysql -u root -p$MYSQL_PASSWORD <shipping.sql &>>/tmp/${COMPONENT}.log
  statuscheck
 
