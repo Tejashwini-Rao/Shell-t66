@@ -32,7 +32,9 @@ if [ $? -eq 0 ]; then
 fi
 
 
-Download
+echo Downloading ${COMPONENT} content
+ curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip"&>>/tmp/${COMPONENT}.log
+  statuscheck
 
 echo "Extract & Load Schema"
 cd /tmp &>>/tmp/${COMPONENT}.log && unzip -o mysql.zip &>>/tmp/${COMPONENT}.log &&  cd mysql-main &>>/tmp/${COMPONENT}.log && mysql -u root -pRoboShop@1 <shipping.sql &>>/tmp/${COMPONENT}.log
