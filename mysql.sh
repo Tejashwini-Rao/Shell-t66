@@ -19,7 +19,7 @@ echo "show databases;" | mysql -uroot -p$RoboShop@1 &>>/tmp/${COMPONENT}.log
 if [ $? -ne 0 ]; then
   echo Changing Default Password
   DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
-  echo "alter user 'root'@'localhost' identified with mysql_native_password by 'RoboShop@1';" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD} &>>/tmp/${COMPONENT}.log
+  echo "alter user 'root'@'localhost' identified with mysql_native_password by 'RoboShop@1';" | mysql --connect-expired-password -uroot -p$DEFAULT_PASSWORD &>>/tmp/${COMPONENT}.log
   statuscheck
 fi
 
