@@ -15,7 +15,7 @@ echo start services
  systemctl enable mysqld &>>/tmp/${COMPONENT}.log && systemctl restart mysqld &>>/tmp/${COMPONENT}.log
  statuscheck
 
-echo "show databases;" | mysql -uroot -p$RoboShop@1 &>>/tmp/${COMPONENT}.log
+echo "show databases;" | mysql -uroot -pRoboShop@1 &>>/tmp/${COMPONENT}.log
 if [ $? -ne 0 ]; then
   echo Changing Default Password
   DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
@@ -24,10 +24,10 @@ if [ $? -ne 0 ]; then
 fi
 
 
-echo "show plugins;" | mysql -uroot -p$RoboShop@1 2>&1 | grep validate_password &>>/tmp/${COMPONENT}.log
+echo "show plugins;" | mysql -uroot -pRoboShop@1 2>&1 | grep validate_password &>>/tmp/${COMPONENT}.log
 if [ $? -eq 0 ]; then
   echo Remove Password Validate Plugin
-  echo "uninstall plugin validate_password;" | mysql -uroot -p$RoboShop@1 &>>/tmp/${COMPONENT}.log
+  echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1 &>>/tmp/${COMPONENT}.log
   statuscheck
 fi
 
