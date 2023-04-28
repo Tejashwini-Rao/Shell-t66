@@ -1,6 +1,6 @@
 COMPONENT=mysql
 source common.sh
-set -e
+
 
 
  echo downloading repo
