@@ -12,7 +12,7 @@ echo install mysql
  statuscheck
 
 echo start services
- systemctl enable mysqld &>>/tmp/${COMPONENT}.log && systemctl restart mysqld &>>/tmp/${COMPONENT}.log
+ systemctl enable mysqld &>>/tmp/${COMPONENT}.log && systemctl start mysqld &>>/tmp/${COMPONENT}.log
  statuscheck
 
 echo "show databases;" | mysql -uroot -pRoboShop@1 &>>/tmp/${COMPONENT}.log
