@@ -36,6 +36,6 @@ Download
 
 echo "Extract & Load Schema"
 cd /tmp &>>/tmp/${COMPONENT}.log && unzip -o mysql.zip &>>/tmp/${COMPONENT}.log &&  cd mysql-main &>>/tmp/${COMPONENT}.log && mysql -u root -pRoboShop@1 <shipping.sql &>>/tmp/${COMPONENT}.log
-StatusCheck
+statuscheck
 
 
